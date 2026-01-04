@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | تيك ايفنت</title>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #00c3f3;
+            --primary-pink: #ff007c;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        body {
+            font-family: 'Almarai', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-gradient); 
+            min-height: 100vh;
+        }
+
+        .dashboard-wrapper {
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .dashboard-card {
+            background: rgba(255, 255, 255, 0.95);
+            width: 100%;
+            max-width: 1100px;
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        .dash-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .dash-title h2 {
+            margin: 0;
+            color: #333;
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .dash-title span {
+            color: var(--primary-blue);
+            font-size: 14px;
+        }
+
+        .back-home {
+            text-decoration: none;
+            color: #666;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .back-home:hover { color: var(--primary-pink); }
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+
+        th {
+            background: transparent;
+            color: #888;
+            padding: 15px;
+            font-weight: 700;
+            text-align: right;
+            border-bottom: 1px solid #eee;
+        }
+
+        tbody tr {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            transition: 0.3s;
+        }
+
+        tbody tr:hover {
+            transform: scale(1.01);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        td {
+            padding: 20px 15px;
+            color: #444;
+            font-size: 15px;
+        }
+
+        td:first-child { border-radius: 0 15px 15px 0; }
+        td:last-child { border-radius: 15px 0 0 15px; }
+
+        .badge-cat {
+            background: #eefbff;
+            color: var(--primary-blue);
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .price-tag {
+            color: var(--primary-pink);
+            font-weight: 800;
+            font-size: 16px;
+        }
+
+        .status-done {
+            background: #d4f7d4;
+            color: #28a745;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+
+  
+        .empty-state {
+            text-align: center;
+            padding: 60px;
+        }
+
+        .empty-state i {
+            font-size: 70px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .empty-state p { color: #999; font-size: 18px; }
+
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-wrapper">
+        <div class="dashboard-card">
+            
+            <div class="dash-header">
+                <div class="dash-title">
+                    <h2><i class="fa-solid fa-chart-line" style="color: var(--primary-pink);"></i> لوحة التحكم</h2>
+                    <span>مرحباً بك، إليك ملخص مبيعات التذاكر</span>
+                </div>
+                <a href="index.html" class="back-home">
+                    العودة للرئيسية <i class="fa-solid fa-house-chimney"></i>
+                </a>
+            </div>
+
+            <div class="table-container" id="mainContent">
+                <table id="dataDisplay">
+                    <thead>
+                        <tr>
+                            <th>العميل</th>
+                            <th>رقم التواصل</th>
+                            <th>الفئة</th>
+                            <th>العدد</th>
+                            <th>الإجمالي</th>
+                            <th>التاريخ</th>
+                            <th>الحالة</th>
+                        </tr>
+                    </thead>
+                    <tbody id="buyersBody">
+                        </tbody>
+                </table>
+            </div>
+
+            <div id="noData" class="empty-state" style="display: none;">
+                <i class="fa-solid fa-folder-open"></i>
+                <p>لا توجد بيانات مسجلة في سجلاتك حالياً</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function loadDashboard() {
+            const buyers = JSON.parse(localStorage.getItem('buyers')) || [];
+            const body = document.getElementById('buyersBody');
+            const noData = document.getElementById('noData');
+            const table = document.getElementById('dataDisplay');
+
+            if (buyers.length === 0) {
+                table.style.display = 'none';
+                noData.style.display = 'block';
+                return;
+            }
+
+            body.innerHTML = '';
+            buyers.reverse().forEach(b => {
+                const row = `
+                    <tr>
+                        <td><strong><i class="fa-regular fa-user" style="margin-left:8px; color:#aaa"></i>${b.name}</strong></td>
+                        <td>${b.phone}</td>
+                        <td><span class="badge-cat">${b.category}</span></td>
+                        <td>${b.qty} تذاكر</td>
+                        <td><span class="price-tag">${b.totalPrice}</span></td>
+                        <td style="color:#888; font-size:13px">${b.date}</td>
+                        <td><span class="status-done"><i class="fa-solid fa-check-double"></i> مؤكد</span></td>
+                    </tr>
+                `;
+                body.insertAdjacentHTML('beforeend', row);
+            });
+        }
+
+        window.onload = loadDashboard;
+    </script>
+</body>
+</html>

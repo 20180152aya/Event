@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/form.css">
+</head>
+
+<body>
+
+    <div id="authModal" class="auth-container">
+        <div class="auth-box">
+            <div class="auth-tabs">
+                <button class="tab-btn active" onclick="switchTab('login')">تسجيل الدخول</button>
+                <button class="tab-btn" onclick="switchTab('register')">تسجيل حساب جديد</button>
+                <div class="back-arrow"><i class="fa-solid fa-arrow-left"></i></div>
+            </div>
+
+            <div class="auth-content">
+                <div class="auth-header">
+                    <span class="skip-btn">تخطي التسجيل <i class="fa-solid fa-arrow-left"></i></span>
+                    <h2 id="authTitle">تسجيل الدخول</h2>
+                </div>
+
+                <form id="authForm">
+                    <div class="input-field">
+                        <input type="email" placeholder="example@mail.com" required>
+                        <label>البريد الإلكتروني</label>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="password" placeholder="••••••••" required>
+                        <label>كلمة المرور</label>
+                    </div>
+
+                    <div class="auth-extra">
+                        <a href="#" class="forgot-link">هل نسيت كلمة المرور ؟</a>
+                        <label class="checkbox-label">
+                            تذكرني على هذا الجهاز <input type="checkbox">
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">سجل الآن</button>
+                </form>
+            </div>
+        </div>
+    </div>
+   <script src="./js/form.js"></script>
+</body>
+
+</html>

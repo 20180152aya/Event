@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tikevent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <!-- start header -->
+    <header class="main-header">
+        <div class="container">
+
+            <div class="header-right">
+                <a href="javascript:void(0)" class="sell-btn desktop-only" onclick="goToBooking()">
+                    <span>بيع تذكرتك</span>
+                    <img src="./images/ticket.png" class="custom-ticket-img">
+                </a>
+                <a href="#" class="login-btn-mob mobile-only">تسجيل الدخول</a>
+            </div>
+
+            <div class="header-center">
+                <img src="./images/eventicon.png" class="logo-img">
+            </div>
+
+            <div class="header-left">
+                <div class="auth-links desktop-only">
+                    <a href="form.html">تسجيل الدخول</a>
+                    <a href="#">تسجيل حساب جديد</a>
+                </div>
+
+                <div class="language-dropdown-container">
+                    <div class="language-switcher desktop-only" id="langBtn">
+                        <div class="arrow-down"></div>
+                        <span class="lang-text">العربية</span>
+                        <img src="https://flagcdn.com/w80/sa.png" class="flag-circle">
+                    </div>
+
+                    <div class="lang-mob-container mobile-only" id="langBtnMob">
+                        <i class="fa-solid fa-chevron-down" style="font-size: 16px;"></i>
+                        <i class="fa-solid fa-globe"></i>
+                        <span>Ar</span>
+
+                    </div>
+
+                    <ul class="dropdown-menu" id="langMenu">
+                        <li>
+
+                            <img src="https://flagcdn.com/w80/us.png" class="flag-circle" width="20">
+                            <span>English</span>
+                        </li>
+                        <li>
+
+                            <img src="https://flagcdn.com/w80/sa.png" class="flag-circle" width="20">
+                            <span>العربية</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="profile-icon mobile-only">
+                    <i class="fa-regular fa-user"></i>
+                </div>
+            </div>
+
+        </div>
+    </header>
+    <!-- end header -->
+    <!-- start navbar -->
+    <nav class="sub-navbar">
+        <div class="container nav-flex">
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">الرئيسيه</a></li>
+                <li><a href="#">من نحن</a></li>
+                <li><a href="#">الاسئله الشائعه</a></li>
+                <li><a href="#">سياسه الخصوصيه</a></li>
+                <li><a href="#">تواصل معنا</a></li>
+                <li>
+                    <a href="javascript:void(0)" onclick="checkDashboardAccess()">لوحة التحكم</a>
+                </li>
+            </ul>
+
+            <div class="search-container">
+                <input type="text" placeholder="ابحث عن حدث .." class="search-input">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            </div>
+
+        </div>
+    </nav>
+    <!-- end navbar -->
+    <!-- start banner -->
+    <section class="page-banner">
+        <div class="container banner-content">
+            <h1>حفلة فنان العرب محمد عبده : حفلات موسم الخبر 2026</h1>
+            <nav class="breadcrumb">
+                <span class="party">حفلة فنان العرب محمد عبده : حفلات موسم الخبر 2026</span>
+                <span class="separator">\</span>
+                <a href="#">الرئيسيه</a>
+            </nav>
+        </div>
+    </section>
+    <!-- end banner -->
+
+    <section class="event-details">
+        <div class="container event-flex">
+
+            <div class="event-info">
+                <h4 class="sub-title">عن الفعالية</h4>
+                <h2 class="main-event-title">حفلة فنان العرب محمد عبده : حفلات موسم الخبر 2026</h2>
+                <p class="event-description">لاتفوت فرصة حضور حفلة فنان العرب محمد عبده : حفلات موسم الخبر 2026 واحجز
+                    الآن عبر تيك ايفنت !!</p>
+
+                <h4 class="sub-title">التاريخ والوقت</h4>
+                <div class="date-time-grid">
+                    <div class="info-item">
+                        <i class="fa-regular fa-calendar"></i>
+                        <span>2026-01-29</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-regular fa-clock"></i>
+                        <span>09:00 PM</span>
+                    </div>
+                </div>
+
+                <div class="seating-chart">
+                    <img src="./images/stage.png" alt="خريطة المقاعد">
+                </div>
+                <div class="terms-section">
+                    <h4 class="sub-title">الشروط والأحكام</h4>
+                    <p class="terms-text">تطبق الشروط والأحكام المعتادة.</p>
+                    <div class="show-more">
+                        <span>عرض المزيد</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-image">
+                <img src="./images/artist.png" alt="محمد عبده">
+            </div>
+
+        </div>
+    </section>
+
+    <section class="booking-section">
+        <div class="container">
+            <div class="booking-wrapper">
+                <div class="booking-top">
+                    <div class="booking-badge">
+                        <img src="./images/book.png" alt="icon">
+                        <span>اجا وقت الحجز</span>
+                    </div>
+                    <h2 class="main-booking-title">احجز تذكرتك الان</h2>
+                </div>
+
+                <div class="booking-filter-bar">
+                    <div class="filter-item select-box">
+                        <select>
+                            <option value="all" selected>اختر الكمية</option>
+                            <option value="1">1 </option>
+                            <option value="2">2 </option>
+                            <option value="3">3 </option>
+                            <option value="4">4 </option>
+                            <option value="5">5 </option>
+                            <option value="6">6 </option>
+                            <option value="7">7 </option>
+                            <option value="8">8 </option>
+                            <option value="9">9 </option>
+                            <option value="10">10 </option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-item select-box border-right">
+                        <select>
+                            <option value="all">كل الفئات</option>
+                            <option value="Diamond 1">Diamond 1</option>
+                            <option value="Diamond 2">Diamond 2</option>
+                            <option value="Diamond 3">Diamond 3</option>
+                            <option value="Platnum">Platnum</option>
+                            <option value="Gold">Gold</option>
+                            <option value="Silver">Silver</option>
+                            <option value="Bronze 1">Bronze 1</option>
+                            <option value="Bronze 2">Bronze 2</option>
+                            <option value="Bronze 3">Bronze 3</option>
+                        </select>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-item toggle-box">
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                        <span class="toggle-text">التذاكر بجانب بعض</span>
+                    </div>
+
+                </div>
+                <div id="tickets-container" class="container">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+
+            <div id="successMessage" class="success-box" style="display: none;">
+                <i class="fa-solid fa-circle-check"></i>
+                <h3>تم الحجز بنجاح!</h3>
+                <p>تم حفظ بياناتك، سيتم التواصل معك قريباً.</p>
+                <button onclick="closeModal()" class="close-success">إغلاق</button>
+            </div>
+
+            <div id="formContainer">
+                <h2>تأكيد الحجز</h2>
+                <form id="bookingForm">
+                    <div class="input-group">
+                        <label>الاسم الكامل</label>
+                        <input type="text" id="buyerName" required placeholder="أدخل اسمك الثلاثي">
+                    </div>
+                    <div class="input-group">
+                        <label>رقم الهاتف</label>
+                        <input type="tel" id="buyerPhone" required pattern="05[0-9]{8}"
+                            title="يجب أن يبدأ بـ 05 ويتكون من 10 أرقام" placeholder="05xxxxxxxx">
+                    </div>
+                    <div class="input-group">
+                        <label>فئة التذكرة</label>
+                        <select id="modalCategory" onchange="syncModalPrice()"></select>
+                    </div>
+                    <div class="input-group">
+                        <label>الكمية</label>
+                        <input type="number" id="modalQty" min="1" value="1" onchange="syncModalPrice()" required>
+                        <small id="stockHint"
+                            style="color: #ff007c; font-weight: bold; display: block; margin-top: 5px;"></small>
+                    </div>
+                    <div class="total-display">
+                        <span>إجمالي السعر:</span>
+                        <span id="modalTotalPrice">SAR 0</span>
+                    </div>
+                    <button type="submit" class="confirm-btn">تأكيد وشراء الآن</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-right-side">
+                <img src="./images/footer.jpg" class="footer-logo" alt="logo">
+                <ul class="footer-nav-links">
+                    <li><a href="#">الرئيسيه</a></li>
+                    <li><a href="#">من نحن</a></li>
+                    <li><a href="#">الاسئله الشائعه</a></li>
+                    <li><a href="#">سياسه الخصوصيه</a></li>
+                    <li><a href="#">تواصل معنا</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact-container">
+                <div class="contact-card">
+                    <i class="fa-solid fa-phone-flip"></i>
+                    <div class="card-info">
+                        <span>رقم الهاتف</span>
+                        <strong>509965748</strong>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <i class="fa-regular fa-envelope"></i>
+                    <div class="card-info">
+                        <span>البريد الالكتروني</span>
+                        <strong>info@tikevent.com</strong>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <div class="card-info">
+                        <span>رقم الواتساب</span>
+                        <strong>509965748</strong>
+                    </div>
+                </div>
+
+            </div>
+            <p class="company-tag">Wateen wa Kayan Company</p>
+            <div class="footer-bottom-bar">
+                <a href="#" class="footer-sell-button">
+                    بيع تذكرتك
+                    <img src="./images/ticket.png" alt="">
+                </a>
+                <div class="copyright-text">
+                    جميع الحقوق محفوظة لتيك ايفنت 2024
+                </div>
+
+                <div class="social-box">
+                    <a href="#" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20"
+                            fill="white">
+                            <path
+                                d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z" />
+                        </svg>
+                    </a>
+
+                    <a href="#" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20"
+                            fill="white">
+                            <path
+                                d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="./js/data.js"></script>
+    <script src="./js/main.js">
+
+    </script>
+
+</body>
+
+</html>
