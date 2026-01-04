@@ -162,11 +162,12 @@ document.getElementById('bookingForm').onsubmit = function (e) {
     const targetId = this.getAttribute('data-target-id');
     const selectedCategory = document.getElementById('modalCategory').value;
     const requestedQty = parseInt(document.getElementById('modalQty').value);
+    const d1 = document.getElementById('data1').value.trim();
+    const d2 = document.getElementById('data2').value.trim();
 
     let ticketToUpdate;
 
     if (targetId) {
-
         ticketToUpdate = ticketsData.find(t => t.id == targetId);
     } else {
         ticketToUpdate = ticketsData.find(t => t.category === selectedCategory && t.available >= requestedQty);
@@ -176,19 +177,21 @@ document.getElementById('bookingForm').onsubmit = function (e) {
         alert("الكمية المطلوبة غير متوفرة!");
         return;
     }
+    
     ticketToUpdate.available -= requestedQty;
-
     localStorage.setItem('mainTicketsData', JSON.stringify(ticketsData));
-
     const newBooking = {
         id: Date.now(),
         name: document.getElementById('buyerName').value,
         phone: document.getElementById('buyerPhone').value,
+        data1: d1 ? d1 : "لا يوجد داتا",
+        data2: d2 ? d2 : "لا يوجد داتا",
         category: selectedCategory,
         qty: requestedQty,
         totalPrice: document.getElementById('modalTotalPrice').innerText,
         date: new Date().toLocaleString()
     };
+
     let buyers = JSON.parse(localStorage.getItem('buyers')) || [];
     buyers.push(newBooking);
     localStorage.setItem('buyers', JSON.stringify(buyers));
@@ -198,7 +201,6 @@ document.getElementById('bookingForm').onsubmit = function (e) {
     document.getElementById('formContainer').style.display = "none";
     document.getElementById('successMessage').style.display = "block";
 };
-
 
 
 function closeModal() {

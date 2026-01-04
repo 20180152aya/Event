@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لوحة التحكم | تيك ايفنت</title>
     <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+
     <style>
         :root {
             --primary-blue: #00c3f3;
@@ -18,7 +19,7 @@
             font-family: 'Almarai', sans-serif;
             margin: 0;
             padding: 0;
-            background: var(--bg-gradient); 
+            background-image: linear-gradient(180deg, #00bded, #ff4395), url(/static/media/Noise.a043958….png);
             min-height: 100vh;
         }
 
@@ -31,12 +32,13 @@
         .dashboard-card {
             background: rgba(255, 255, 255, 0.95);
             width: 100%;
-            max-width: 1100px;
+            max-width: 1200px;
             border-radius: 25px;
             padding: 30px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
         }
+
         .dash-header {
             display: flex;
             justify-content: space-between;
@@ -68,7 +70,10 @@
             transition: 0.3s;
         }
 
-        .back-home:hover { color: var(--primary-pink); }
+        .back-home:hover {
+            color: var(--primary-pink);
+        }
+
         .table-container {
             overflow-x: auto;
         }
@@ -90,23 +95,29 @@
 
         tbody tr {
             background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
             transition: 0.3s;
         }
 
         tbody tr:hover {
-            transform: scale(1.01);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
         td {
-            padding: 20px 15px;
+            padding: 15px;
             color: #444;
-            font-size: 15px;
+            font-size: 14px;
+            vertical-align: middle;
         }
 
-        td:first-child { border-radius: 0 15px 15px 0; }
-        td:last-child { border-radius: 15px 0 0 15px; }
+        td:first-child {
+            border-radius: 0 15px 15px 0;
+        }
+
+        td:last-child {
+            border-radius: 15px 0 0 15px;
+        }
 
         .badge-cat {
             background: #eefbff;
@@ -114,13 +125,13 @@
             padding: 5px 12px;
             border-radius: 8px;
             font-weight: bold;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .price-tag {
             color: var(--primary-pink);
             font-weight: 800;
-            font-size: 16px;
+            font-size: 15px;
         }
 
         .status-done {
@@ -128,10 +139,15 @@
             color: #28a745;
             padding: 5px 10px;
             border-radius: 6px;
-            font-size: 12px;
+            font-size: 11px;
+            font-weight: 700;
         }
 
-  
+        .data-text {
+            color: #666;
+            font-size: 13px;
+        }
+
         .empty-state {
             text-align: center;
             padding: 60px;
@@ -143,19 +159,76 @@
             margin-bottom: 20px;
         }
 
-        .empty-state p { color: #999; font-size: 18px; }
+        @media screen and (max-width: 992px) {
 
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+            }
+
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            tbody tr {
+                margin-bottom: 20px;
+                border: 1px solid #eee;
+                border-radius: 20px;
+                padding: 10px;
+            }
+
+            td {
+                border: none;
+                position: relative;
+                padding-right: 45% !important;
+                text-align: left !important;
+                border-bottom: 1px solid #f5f5f5;
+                min-height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+            }
+
+            td:before {
+                position: absolute;
+                right: 15px;
+                width: 40%;
+                font-weight: 800;
+                color: var(--primary-blue);
+                content: attr(data-label);
+                text-align: right;
+            }
+
+            td:last-child {
+                border-bottom: 0;
+            }
+
+            td:first-child {
+                border-radius: 0;
+            }
+
+            td:last-child {
+                border-radius: 0;
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <div class="dashboard-wrapper">
         <div class="dashboard-card">
-            
+
             <div class="dash-header">
                 <div class="dash-title">
                     <h2><i class="fa-solid fa-chart-line" style="color: var(--primary-pink);"></i> لوحة التحكم</h2>
-                    <span>مرحباً بك، إليك ملخص مبيعات التذاكر</span>
+                    <span>سجل مبيعات التذاكر والبيانات الإضافية</span>
                 </div>
                 <a href="index.html" class="back-home">
                     العودة للرئيسية <i class="fa-solid fa-house-chimney"></i>
@@ -167,7 +240,9 @@
                     <thead>
                         <tr>
                             <th>العميل</th>
-                            <th>رقم التواصل</th>
+                            <th>الهاتف</th>
+                            <th>داتا 1</th>
+                            <th>داتا 2</th>
                             <th>الفئة</th>
                             <th>العدد</th>
                             <th>الإجمالي</th>
@@ -175,14 +250,13 @@
                             <th>الحالة</th>
                         </tr>
                     </thead>
-                    <tbody id="buyersBody">
-                        </tbody>
+                    <tbody id="buyersBody"></tbody>
                 </table>
             </div>
 
             <div id="noData" class="empty-state" style="display: none;">
                 <i class="fa-solid fa-folder-open"></i>
-                <p>لا توجد بيانات مسجلة في سجلاتك حالياً</p>
+                <p>لا توجد بيانات مسجلة حالياً</p>
             </div>
 
         </div>
@@ -202,23 +276,25 @@
             }
 
             body.innerHTML = '';
-            buyers.reverse().forEach(b => {
+            [...buyers].reverse().forEach(b => {
                 const row = `
                     <tr>
-                        <td><strong><i class="fa-regular fa-user" style="margin-left:8px; color:#aaa"></i>${b.name}</strong></td>
-                        <td>${b.phone}</td>
-                        <td><span class="badge-cat">${b.category}</span></td>
-                        <td>${b.qty} تذاكر</td>
-                        <td><span class="price-tag">${b.totalPrice}</span></td>
-                        <td style="color:#888; font-size:13px">${b.date}</td>
-                        <td><span class="status-done"><i class="fa-solid fa-check-double"></i> مؤكد</span></td>
+                        <td data-label="العميل"><strong>${b.name}</strong></td>
+                        <td data-label="الهاتف">${b.phone}</td>
+                        <td data-label="داتا 1" class="data-text">${b.data1 || "لا يوجد داتا"}</td>
+                        <td data-label="داتا 2" class="data-text">${b.data2 || "لا يوجد داتا"}</td>
+                        <td data-label="الفئة"><span class="badge-cat">${b.category}</span></td>
+                        <td data-label="العدد">${b.qty}</td>
+                        <td data-label="الإجمالي"><span class="price-tag">${b.totalPrice}</span></td>
+                        <td data-label="التاريخ">${b.date}</td>
+                        <td data-label="الحالة"><span class="status-done">مؤكد ✅</span></td>
                     </tr>
                 `;
                 body.insertAdjacentHTML('beforeend', row);
             });
         }
-
         window.onload = loadDashboard;
     </script>
 </body>
+
 </html>

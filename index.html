@@ -219,31 +219,52 @@
             </div>
 
             <div id="formContainer">
-                <h2>تأكيد الحجز</h2>
-                <form id="bookingForm">
-                    <div class="input-group">
-                        <label>الاسم الكامل</label>
-                        <input type="text" id="buyerName" required placeholder="أدخل اسمك الثلاثي">
+                <div class="modal-header">
+                    <h2>تأكيد الحجز</h2>
+                </div>
+
+                <form id="bookingForm" class="form-body">
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>الاسم الكامل</label>
+                            <input type="text" id="buyerName" required placeholder="أدخل اسمك الثلاثي">
+                        </div>
+                        <div class="input-group">
+                            <label>رقم الهاتف</label>
+                            <input type="tel" id="buyerPhone" required pattern="05[0-9]{8}"
+                                title="يجب أن يبدأ بـ 05 ويتكون من 10 أرقام" placeholder="05xxxxxxxx">
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <label>رقم الهاتف</label>
-                        <input type="tel" id="buyerPhone" required pattern="05[0-9]{8}"
-                            title="يجب أن يبدأ بـ 05 ويتكون من 10 أرقام" placeholder="05xxxxxxxx">
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>داتا 1</label>
+                            <input type="text" id="data1" placeholder="بيانات إضافية">
+                        </div>
+                        <div class="input-group">
+                            <label>داتا 2</label>
+                            <input type="text" id="data2" placeholder="بيانات إضافية">
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <label>فئة التذكرة</label>
-                        <select id="modalCategory" onchange="syncModalPrice()"></select>
+
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>فئة التذكرة</label>
+                            <select id="modalCategory" onchange="syncModalPrice()"></select>
+                        </div>
+                        <div class="input-group">
+                            <label>الكمية</label>
+                            <input type="number" id="modalQty" min="1" value="1" onchange="syncModalPrice()" required>
+                            <small id="stockHint"
+                                style="color: #ff007c; font-weight: bold; display: block; margin-top: 5px;"></small>
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <label>الكمية</label>
-                        <input type="number" id="modalQty" min="1" value="1" onchange="syncModalPrice()" required>
-                        <small id="stockHint"
-                            style="color: #ff007c; font-weight: bold; display: block; margin-top: 5px;"></small>
-                    </div>
+
                     <div class="total-display">
                         <span>إجمالي السعر:</span>
                         <span id="modalTotalPrice">SAR 0</span>
                     </div>
+
                     <button type="submit" class="confirm-btn">تأكيد وشراء الآن</button>
                 </form>
             </div>
